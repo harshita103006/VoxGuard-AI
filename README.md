@@ -65,37 +65,6 @@ Deep Learning Model
      ↓
 Prediction + Confidence Score
 ```
-
----
-
-## 📂 Project Structure
-
-```bash
-VoxGuard-AI/
-│── frontend/
-│── backend/
-│── models/
-│── audio_samples/
-│── assets/
-│── README.md
-```
-
----
-
-## 🚀 Installation
-
-```bash
-git clone https://github.com/harshita103006/VoxGuard-AI.git
-cd VoxGuard-AI
-```
-
-```bash
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
----
-
 ## 🌌 Future Scope
 
 - Real-time voice authentication
