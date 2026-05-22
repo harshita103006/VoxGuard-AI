@@ -30,7 +30,7 @@ def initialize_database():
             confidence REAL,
 
             variance REAL,
-
+            voice_fingerprint TEXT,
             risk_level TEXT,
 
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

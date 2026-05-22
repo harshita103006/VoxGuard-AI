@@ -24,6 +24,18 @@ from core.audio_anomalies import (
 from core.threat_logger import (
     log_audio_threat
 )
+from core.voice_fingerprint import (
+    generate_voice_fingerprint
+)
+from core.threat_matcher import (
+    check_known_threat
+)
+from core.audio_validator import (
+    validate_audio
+)
+from core.confidence_calibrator import (
+    calibrate_confidence
+)
 
 router = APIRouter()
 
@@ -42,9 +54,26 @@ async def upload_audio(
             buffer
         )
 
+    validation = validate_audio(
+        file_path
+    )
+    if not validation["valid"]:
+
+        return {
+            "audio_valid": False,
+            "reason": validation["reason"]
+        }
+
     features = extract_mfcc_features(
         file_path
     )
+    
+    voice_fingerprint = (
+        generate_voice_fingerprint(
+            features
+        )
+    )
+    print("VOICE FP:", voice_fingerprint)
     metadata = extract_audio_metadata(
         file_path
     )
@@ -71,11 +100,24 @@ async def upload_audio(
         metadata,
         analysis["variance"]
     )
+    known_match = check_known_threat(
+        voice_fingerprint
+    )
+    calibrated_confidence = (
+        calibrate_confidence(
+             analysis["confidence"],
+            anomalies,
+            known_match,
+            risk_analysis["risk_level"]
+        )
+    )
+    print("KNOWN MATCH:", known_match)
     log_audio_threat(
         audio.filename,
         analysis["prediction"],
         analysis["confidence"],
         analysis["variance"],
+        voice_fingerprint,
         risk_analysis["risk_level"]
     )
     spectrogram_path = (
@@ -94,8 +136,7 @@ async def upload_audio(
 
         "prediction": analysis["prediction"],
 
-        "confidence": analysis["confidence"],
-
+        "confidence": calibrated_confidence,
         "variance": analysis["variance"],
 
         "mfcc_feature_count": len(features),
@@ -106,5 +147,7 @@ async def upload_audio(
 
         "explanations": explanations,
         "anomalies": anomalies,
-        "risk_analysis": risk_analysis
+        "risk_analysis": risk_analysis,
+        "voice_fingerprint": voice_fingerprint,
+        "known_threat_match": known_match
     }

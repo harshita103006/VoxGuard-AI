@@ -8,6 +8,7 @@ def log_audio_threat(
     prediction,
     confidence,
     variance,
+    voice_fingerprint,
     risk_level
 ):
 
@@ -22,15 +23,17 @@ def log_audio_threat(
             prediction,
             confidence,
             variance,
+            voice_fingerprint,
             risk_level
         )
-        VALUES (?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?)
         """,
         (
             filename,
             prediction,
             confidence,
             variance,
+            voice_fingerprint,
             risk_level
         )
     )
