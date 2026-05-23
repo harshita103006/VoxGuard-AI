@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #0a0a0c;
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+  --cyan: #00d4c8;
+  --red: #ff3b4e;
+  --amber: #f59e0b;
+  --text: #e8e8f0;
+  --text-2: rgba(232,232,240,0.6);
+  --text-3: rgba(232,232,240,0.35);
+  --font: 'Syne', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+button, input, label, [role="button"] { cursor: none; }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: rgba(0,212,200,0.2); border-radius: 2px; }
+::selection { background: rgba(0,212,200,0.18); color: var(--text); }

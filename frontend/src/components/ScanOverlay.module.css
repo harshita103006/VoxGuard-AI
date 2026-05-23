@@ -1,0 +1,8 @@
+.wrap { padding:2.5rem 1.5rem; text-align:center; }
+.status { font-family:var(--mono); font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--cyan); margin-bottom:2rem; opacity:.85; min-height:1.2em; }
+.bars { display:flex; align-items:flex-end; justify-content:center; gap:3px; height:64px; margin-bottom:2rem; }
+.bar { width:4px; background:rgba(0,212,200,0.65); border-radius:2px; animation:pulse 1s ease-in-out infinite alternate; transform-origin:bottom; }
+@keyframes pulse { from{transform:scaleY(.1);opacity:.2} to{transform:scaleY(1);opacity:1} }
+.track { height:1px; background:var(--glass-border); border-radius:1px; overflow:hidden; margin-bottom:.5rem; }
+.fill { height:100%; background:var(--cyan); transition:width .35s ease; }
+.pct { font-family:var(--mono); font-size:.65rem; color:var(--text-3); letter-spacing:.1em; }

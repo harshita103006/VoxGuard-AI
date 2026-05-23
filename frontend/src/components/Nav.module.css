@@ -1,0 +1,11 @@
+.nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.5rem 2rem;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: linear-gradient(to bottom, rgba(10,10,12,.88), transparent);
+  backdrop-filter: blur(8px);
+}
+.logo { font-size: .84rem; letter-spacing: .28em; text-transform: uppercase; font-weight: 500; }
+.logo span { color: var(--cyan); }
+.hint { font-family: var(--mono); font-size: .68rem; color: var(--text-3); letter-spacing: .12em; }
+@media(max-width:480px) { .hint { display:none; } .nav { padding: 1.25rem 1.25rem; } }
